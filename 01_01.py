@@ -170,14 +170,84 @@ def prime_number(n):
         return print(f'{n}는 소수아님')
 '''
 #-----------------------------------
-# 강사의 방법  ->  이 부분에 대한 복습 필요 
+# 강사의 방법  ->  이 부분에 대한 복습 필요
+'''
 def 소수판단(n):
-    for i in range(2,n):
-        if n % i == 0:
+    for i in range(2,n): # 1하고 끝수는 빠진것임.
+        if n % i == 0:   # 소수의 갯수가 0개이면 참(소수)
             return False
     return True
 
 a = int(input('숫자입력: '))
 
-if 소수판단(a): print('소수')
-else          : print('소수x')   
+#if 소수판단(a): print('소수o')
+#else          : print('소수x')   
+'''
+#-----------------------------------
+# 수를 입력받고 짝수 홀수를 판별해주는 함수를 작성
+# return 값이 bool 값
+'''
+def 짝수홀수(n):
+    if n % 2 == 0:
+        return True
+    else:
+        return False
+
+a = int(input('숫자입력: '))
+
+if 짝수홀수(a): print('짝수')
+else          : print('홀수')
+'''
+#-----------------------------------
+# 입력받은 수까지 완전수를 출력하는 프로그램
+# 자기자신을 제외한 모든 약수를 더한 수가 자기자신이 되는 수가 완전수이다.
+# 예) 6의 약수 -> 1,2,3,6(6을 제외 나머지 더하면 6이므로 완전수)
+# 예) 10의 약수 -> 1,2,5,10(6을 제외 나머지 더하면 6이므로 완전수)
+# 변수로 저장해서 그냥 하기
+''' 내가 첨에 푼거를 강사가 두번째에 하자고 함.
+약수 = []
+n = int(input('수입력: '))
+for j in range(1,n):
+    if n % j == 0:
+        약수.append(j)
+print(약수)
+print(sum(약수))
+'''
+#----------------------------------
+#1. 변수로 저장
+'''
+hap = 0
+n = int(input('수 입력 :'))
+
+for i in range(1, n+1):
+        if n % i == 0:
+            hap += i # i 의 누적합
+if hap - n == n :
+        print(n, '은 완전수입니다.')
+
+'''
+#2. 리스트로 저장
+'''
+약수 = []
+n = int(input('수입력: '))
+for j in range(1,n):
+    if n % j == 0:
+        약수.append(j)
+
+if sum(약수) == n:
+    print(n, "은 완전수")
+'''
+#3. 입력받은 수까지 함수를 이용 완전수 찾기
+'''
+def 완전수판별(n):
+    hap = 0
+    for i in range(1,n):
+        if n % i == 0:
+            hap += i
+    return hap
+
+a = int(input('수 입력 : '))
+완전수 = 완전수판별(a)
+if 완전수 == a: print('완전수')
+else          : print('완전수x') 
+'''    
