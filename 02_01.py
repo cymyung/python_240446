@@ -308,3 +308,6 @@ print(myList)
 # 이걸 더 간단하게..
 print(list(map(lambda num: num + 10, [1,2,3,4,5])))
 # 이건 lambda 함수를 이용하면 간단하게 표현할 수 있음을 보여주는..
+
+
+
