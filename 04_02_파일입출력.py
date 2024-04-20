@@ -1,16 +1,16 @@
 # 한줄씩 읽기
-'''
+
 inFp  = None  # 입력파일
 inStr = ''    # 읽어온 문자열  
 
 # 1단계 파일열기
-inFp  = open('C:/Temp/data2.txt', 'r')
+inFp  = open('C:/temp/data1.txt', 'r')
 # 텍스트 파일 저장시 문서 인코딩을 ansi로 한다.
 
 #2단계 읽기
 # readline() 함수는 inFp로 열린 파일에서 한 행 읽어 inStr에 저장
 inStr = inFp.readline()
-print(inStr, end = '') 화면에 출력
+print(inStr, end = '') #화면에 출력
 
 inStr = inFp.readline()
 print(inStr, end = '')
@@ -20,7 +20,7 @@ print(inStr, end = '')
 
 # 3단계 닫기
 inFp.close()
-'''
+
 '''
 파일입출력의 개념
     표준 입출력과 파일 입출력 함수
@@ -205,7 +205,7 @@ print('---- 파일이 정상적으로 복사됨 ----')
 '''
 #--------------------------------------
 # 보안의 기본 개념 암호화
-
+'''
 print(ord('파'))
 print('*******')
 print(chr(54028))
@@ -215,18 +215,19 @@ print('*******')
 print(chr(num - 100))
 print('*******')
 # ord(), chr() 두개 함수로 암호화 할 수 있다.
-
+'''
 #--------------------------------------
 # 파일을 불러와서 암호화 해서 저장?
 #1. 암호화, 암호해석 선택
 #2. 입력파일명, 출력파일명 입력
 #3. 저장
+'''
 inFp, outFp = None, None
 inStr, outStr = '',''
 i = 0
 secu = 0
 
-secuYN = input('1. 암호화, 2. 암호해석 중 선택: ')
+secuYN = input('1. 암호화, 2. 암호해석 중 선택: ') 
 inFname = input('입력 파일명을 입력하세요 : ')
 outFname = input('출력 파일명을 입력하세요 : ')
 
@@ -246,9 +247,9 @@ while True:
     outStr = ''
     for i in range(0, len(inStr)):
         ch = inStr[i]
-        chNum = ord(ch)
+        chNum = ord(ch)        # 문자를 숫자로 변환 
         chNum = chNum + secu
-        ch2 = chr(chNum)
+        ch2 = chr(chNum)       # 숫자를 문자로 변환
         outStr = outStr + ch2
 
     outFp.write(outStr)
@@ -256,3 +257,4 @@ while True:
 outFp.close()
 inFp.close()
 print('%s --> %s 변환완료' % (inFname, outFname))
+'''
