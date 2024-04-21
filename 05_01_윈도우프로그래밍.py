@@ -284,25 +284,26 @@ window.mainloop()
 '''
 # -------------------------------
 # 사진 보기
-'''
+# <이전>버튼이나 <다음>버튼을 누르면 사진들을 표시하는 사진 앨범 프로그램
 from tkinter import *
 from time import *
 
+#fnameList 변수에 사진 9장의 파일명을 저장
 fnameList = ['jeju1.gif','jeju2.gif','jeju3.gif','jeju4.gif','jeju5.gif','jeju6.gif','jeju7.gif','jeju8.gif','jeju9.gif']
 
-photoList = [None] * 9
-num = 0
+photoList = [None] * 9 # photoList에는 PhotoImage() 함수로 생성할 변수 9개 준비
+num = 0                # 현재 사진의 번호
 
-def clickNext():
-    global num
-    num += 1
+def clickNext():  # <다음>버튼을 누르면 실행되는 함수
+    global num  # global num은 num 전역변수를 함수 안에서 사용 의미
+    num += 1    # 사진 번호를 하나 증가
     if num > 8:
         num = 0
     photo = PhotoImage(file = 'img/' + fnameList[num])
-    pLabel.configure(image = photo)
+    pLabel.configure(image = photo)   # 변경된 사진 번호에 해당하는 이미지 파일로 pLabel 변경
     pLabel.image = photo
 
-def clickPrev():
+def clickPrev():   # <이전>버튼을 누르면 처리되는 함수
     global num
     num -= 1
     if num < 0:
@@ -315,10 +316,10 @@ window = Tk()
 window.geometry('700x500')
 window.title('사진 앨범 보기')
 
-btnPrev = Button(window, text = '<< 이전', command = clickPrev)
+btnPrev = Button(window, text = '<< 이전', command = clickPrev)  # 버튼 누르면 이 함수와 연결
 btnNext = Button(window, text = '다음 >>', command = clickNext)
 
-photo = PhotoImage(file = 'img/' + fnameList[0])
+photo = PhotoImage(file = 'img/' + fnameList[0])   # 프로그램 실행 후 첫번째 사진 표시
 pLabel = Label(window, image = photo)
 
 btnPrev.place(x = 250, y = 10)
@@ -326,4 +327,4 @@ btnNext.place(x = 400, y = 10)
 pLabel.place(x = 15, y = 50)
 
 window.mainloop()
-'''
+
