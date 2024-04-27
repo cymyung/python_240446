@@ -174,17 +174,17 @@ label1.configure(text = str(filename))
 window.mainloop()
 '''
 #-----------------------------------
-#
+# 그림파일을 골라서 여는 프로그램
 from tkinter import *
 from tkinter. filedialog import *
 
-def func_open():
+def func_open(): # [파일열기] 실행되는 함수
     filename = askopenfilename(parent = window, filetypes = (('GIF 파일', '*.gif'), ('모든 파일', '*.*')))
     photo = PhotoImage(file = filename)
-    pLabel.configure(image = photo)
+    pLabel.configure(image = photo) # 레이블에 이미지 표시
     pLabel.image = photo
 
-def func_exit():
+def func_exit(): # [프로그램 종료] 실행되는 함수
     window.quit()
     window.destroy()
 
@@ -192,11 +192,12 @@ window = Tk()
 window.geometry('400x400')
 window.title('명화 감상하기')
 
-photo = PhotoImage()
+photo = PhotoImage() # 선택한 GIF 윈도창에 출력하려고 레이블 준비 photoimage()에
+                     # 별도의 매개변수 없이 빈 그림만 준비
 pLabel = Label(window, image = photo)
 pLabel.pack(expand=1, anchor=CENTER)
 
-mainMenu = Menu(window)
+mainMenu = Menu(window) #  준비하는 메뉴는 앞에서 실습한 내용과 동일
 window.config(menu=mainMenu)
 fileMenu = Menu(mainMenu)
 mainMenu.add_cascade(label = '파일', menu = fileMenu)
