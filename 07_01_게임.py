@@ -352,6 +352,7 @@ print(f'final score is {score}')
 # 위 문제에서 1/5확률로 200점짜리 문제와 메시지가 출력되고
 # 1/4 확률로 life가 2개 걸린 문제와 메세지가 출력되도록
 # 1/5확률 같은건 변수 5개 중 한개를 골라서 그게 되면 1/5로 하는 방법을 쓰면 됨.
+'''
 import random
 import time
 import os
@@ -359,13 +360,30 @@ import os
 life = 5
 score = 0
 while True:
-    if life == 0:
+    if life <= 0:
         break
-    a = random.randint(10,99)
-    b = random.randint(10,99)
+    
+    a    = random.randint(1,9)
+    b    = random.randint(1,9)
+    op   = random.choice(['plus','minus'])
+
+    s200 = random.randint(1, 5)
+    l2   = random.randint(1, 4)
+    
     print(f'life = {life}, score = {score}')
 
-    op = random.choice(['plus','minus'])
+    if s200 == 1:
+        print('200점 짜리 문제')
+        점수 = 200
+    else:
+        점수 = 100
+
+    if l2 == 1:
+        print('라이프가 2개걸린 문제')
+        라이프 = 2
+    else:
+        라이프 = 1
+        
 
     if   op == 'plus':
         c = a + b
@@ -375,20 +393,258 @@ while True:
     print(a, op, b, "=", end = '')
     
     user = int(input())
+    
     if c == user:
-        score += 100
+        score += 점수
         print('correct')
     else:
-        life -= 1
+        life -= 라이프
         print('wrong')
+        
     time.sleep(0.5)
     print()
     os.system('cls')
 print(f'final score is {score}')
-
+'''
 #--------------------------------------
 # 10초 안에 푸는..
 # time.time 을 이용하여 푼다.
 # start_time = time.time
 
 # time.time - start_time()
+
+
+
+#--------------------------------------
+# 난이도를 1. 쉬움, 2. 노멀, 3. 어려움
+# 쉬움은 한자리수끼리의 연산, 노멀은 두자리수끼리의 연산, 어려움은 세자리수의 연산
+# 난이도는 게임전 한번만 설정
+'''
+import random
+import time
+import os
+
+life = 5
+score = 0
+
+difficulty = int(input('난이도 하[1], 난이도 중[2], 난이도 상[3] : '))
+
+
+while True:
+    if life <= 0:
+        break
+
+    if difficulty == 1:
+        a    = random.randint(1,9)
+        b    = random.randint(1,9)
+    elif difficulty == 2:
+        a    = random.randint(10,99)
+        b    = random.randint(10,99)
+    elif difficulty == 3:
+        a    = random.randint(100,999)
+        b    = random.randint(100,999)
+    
+        
+    op   = random.choice(['plus','minus'])
+
+    s200 = random.randint(1, 5)
+    l2   = random.randint(1, 4)
+    
+    print(f'life = {life}, score = {score}')
+
+    if s200 == 1:
+        print('200점 짜리 문제')
+        점수 = 200
+    else:
+        점수 = 100
+
+    if l2 == 1:
+        print('라이프가 2개걸린 문제')
+        라이프 = 2
+    else:
+        라이프 = 1
+        
+
+    if   op == 'plus':
+        c = a + b
+    elif op == 'minus':
+        c = a - b
+
+    print(a, op, b, "=", end = '')
+    
+    user = int(input())
+    
+    if c == user:
+        score += 점수
+        print('correct')
+    else:
+        life -= 라이프
+        print('wrong')
+        
+    time.sleep(0.5)
+    print()
+    os.system('cls')
+print(f'final score is {score}')
+'''
+#--------------------------------------
+# 위의 내용에서 난이도 코드를 좀더 심플하게..
+'''
+import random
+import time
+import os
+
+life = 5
+score = 0
+
+difficulty = int(input('난이도 하[1], 난이도 중[2], 난이도 상[3] : '))
+
+
+while True:
+    if life <= 0:
+        break
+
+    if difficulty == 1:
+        r1 = 1
+        r2 = 9
+    elif difficulty == 2:
+        r1 = 10
+        r2 = 99
+    elif difficulty == 3:
+        r1 = 100
+        r2 = 999
+
+    a = random.randint(r1,r2)
+    b = random.randint(r1,r2)
+
+    
+        
+    op   = random.choice(['plus','minus'])
+
+    s200 = random.randint(1, 5)
+    l2   = random.randint(1, 4)
+    
+    print(f'life = {life}, score = {score}')
+
+    if s200 == 1:
+        print('200점 짜리 문제')
+        점수 = 200
+    else:
+        점수 = 100
+
+    if l2 == 1:
+        print('라이프가 2개걸린 문제')
+        라이프 = 2
+    else:
+        라이프 = 1
+        
+
+    if   op == 'plus':
+        c = a + b
+    elif op == 'minus':
+        c = a - b
+
+    print(a, op, b, "=", end = '')
+    
+    user = int(input())
+    
+    if c == user:
+        score += 점수
+        print('correct')
+    else:
+        life -= 라이프
+        print('wrong')
+        
+    time.sleep(0.5)
+    print()
+    os.system('cls')
+print(f'final score is {score}')
+'''
+#--------------------------------------
+# 게임종료 후 다시 할 것인지를 물어보는
+# 만약 사용자에게 더할건지 물어보고 no라고 하면 아예 끝내고,
+# 아니면 난이도 설정부터 다시 이어지도록
+# 그럼, 전체를 while True로 싸고 사용자에게 계속할건지
+# 물어보는건 처음이 아니라 게임이 끝나고 break 된 다음으로 함
+
+import random
+import time
+import os
+
+while True:
+    
+    life = 5
+    score = 0
+
+    difficulty = int(input('난이도 하[1], 난이도 중[2], 난이도 상[3] : '))
+
+
+    while True:
+        if life <= 0:
+            break
+
+        if difficulty == 1:
+            r1 = 1
+            r2 = 9
+        elif difficulty == 2:
+            r1 = 10
+            r2 = 99
+        elif difficulty == 3:
+            r1 = 100
+            r2 = 999
+
+        a = random.randint(r1,r2)
+        b = random.randint(r1,r2)
+
+        
+            
+        op   = random.choice(['plus','minus'])
+
+        s200 = random.randint(1, 5)
+        l2   = random.randint(1, 4)
+        
+        print(f'life = {life}, score = {score}')
+
+        if s200 == 1:
+            print('200점 짜리 문제')
+            점수 = 200
+        else:
+            점수 = 100
+
+        if l2 == 1:
+            print('라이프가 2개걸린 문제')
+            라이프 = 2
+        else:
+            라이프 = 1
+            
+
+        if   op == 'plus':
+            c = a + b
+        elif op == 'minus':
+            c = a - b
+
+        print(a, op, b, "=", end = '')
+        
+        user = int(input())
+        
+        if c == user:
+            score += 점수
+            print('correct')
+        else:
+            life -= 라이프
+            print('wrong')
+            
+        time.sleep(0.5)
+        print()
+        os.system('cls')
+    print(f'final score is {score}')
+
+    continue_1 = input('continue?(y/n) : ')
+
+    if continue_1 == 'y':
+        True
+    else:
+        break
+    # if continue_1 = 'n':
+    #   break  이렇게 해도 된다.
+
+# 슈팅게임 관련하여 자료실에 올려둘 예정임.
